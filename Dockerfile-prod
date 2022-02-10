@@ -1,0 +1,12 @@
+FROM jjanzic/docker-python3-opencv:latest
+
+WORKDIR /app
+
+COPY ./package.json .
+COPY ./requirements.txt .
+COPY ./src ./src
+
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "src/app.py"]

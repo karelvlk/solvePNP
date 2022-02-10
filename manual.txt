@@ -1,0 +1,32 @@
+
+How to use solvePNP function
+
+Input
+    in that order:
+        'x' = array of 3 or more points with XYZ coords (more points give you more accurate solution, but it's slower)
+        'u' = array of point that show 'x' points on photo
+        'size' = array of two numbers [width, height]
+        'f' = focal length of camera
+        's' = array of size of CCD sensor of camera [width, height]
+        'i' = number of iterations (used in cases of >=5 points, default (None) is 10 that is also minimum of iterations)
+
+Output:
+    Without problems:
+        'point': [] = camera position XYZ
+        'ypr': [] = yaw, pitch, roll of the camera ( 0deg North, + left direction, - right direction )
+        'points_inaccuracy': [] = array of objects for each point
+                            in each object  {
+                                                dl: (direction - Pythagorean theorem from dx and dy),
+                                                dx: (direction on x axis),
+                                                dy: (direction on y axis)
+
+                                            }
+                            (In case of 3 or 4 points, first 3 points have always inaccuracy 0, because of solving method)
+        'global_inaccuracy': all points inaccuracy summed up
+        'details': { 'result_list }
+
+    With some problems:
+        'errors': [] = in the array there are strings that announce mistakes
+
+
+
